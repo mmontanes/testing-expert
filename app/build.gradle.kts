@@ -62,11 +62,14 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
     implementation("com.github.bumptech.glide:glide:4.16.0")
     ksp("com.github.bumptech.glide:compiler:4.16.0")
+
+    testImplementation(project(":appTestShared"))
     testImplementation("junit:junit:4.13.2")
     testImplementation("io.mockk:mockk:1.13.3")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
     testImplementation("app.cash.turbine:turbine:1.0.0")
 
+    androidTestImplementation(project(":appTestShared"))
     androidTestImplementation("androidx.test.ext:junit-ktx:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-contrib:3.5.1")
     androidTestImplementation("androidx.test:rules:1.5.0")
