@@ -1,7 +1,5 @@
 @file:Suppress("UnstableApiUsage")
 
-import android.annotation.SuppressLint
-
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -81,6 +79,7 @@ dependencies {
     androidTestImplementation("com.google.dagger:hilt-android-testing:2.46.1")
     kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.50")
     androidTestImplementation("com.squareup.okhttp3:mockwebserver:4.12.0")
+    androidTestImplementation("app.cash.turbine:turbine:1.0.0")
 }
 
 kapt {
