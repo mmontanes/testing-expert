@@ -83,9 +83,9 @@ dependencies {
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material:material")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    implementation("androidx.compose.material:material-icons-extended")
+    implementation("androidx.navigation:navigation-compose:2.7.6")
+
 
     testImplementation(project(":appTestShared"))
     testImplementation("junit:junit:4.13.2")
@@ -106,6 +106,10 @@ dependencies {
 
     debugImplementation("androidx.fragment:fragment-testing-manifest:1.6.2")
     androidTestImplementation("androidx.fragment:fragment-testing:1.6.2")
+
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    debugImplementation("androidx.compose.ui:ui-tooling")
+    debugImplementation("androidx.compose.ui:ui-test-manifest")
 }
 
 kapt {
