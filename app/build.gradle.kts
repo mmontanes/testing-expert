@@ -54,7 +54,14 @@ android {
     }
     packaging {
         resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "/META-INF/{AL2.0,LGPL2.1,LICENSE-notice.md,LICENSE.md}"
+        }
+    }
+    testOptions {
+        packaging {
+            jniLibs {
+                useLegacyPackaging = true
+            }
         }
     }
 }
@@ -104,6 +111,7 @@ dependencies {
     kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.50")
     androidTestImplementation("com.squareup.okhttp3:mockwebserver:4.12.0")
     androidTestImplementation("app.cash.turbine:turbine:1.0.0")
+    androidTestImplementation("io.mockk:mockk-android:1.13.3")
 
     debugImplementation("androidx.fragment:fragment-testing-manifest:1.6.2")
     androidTestImplementation("androidx.fragment:fragment-testing:1.6.2")
