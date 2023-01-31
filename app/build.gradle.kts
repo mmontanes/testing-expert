@@ -108,6 +108,8 @@ dependencies {
     testImplementation("org.robolectric:robolectric:4.11.1")
     testImplementation("androidx.compose.ui:ui-test-junit4")
     testImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    testImplementation("com.google.dagger:hilt-android-testing:2.50")
+    kaptTest("com.google.dagger:hilt-android-compiler:2.50")
 
     androidTestImplementation(project(":appTestShared"))
     androidTestImplementation("androidx.test.ext:junit-ktx:1.1.5")
@@ -115,7 +117,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-idling-resource:3.5.1")
     androidTestImplementation("androidx.test:rules:1.5.0")
     androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
-    androidTestImplementation("com.google.dagger:hilt-android-testing:2.46.1")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.50")
     kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.50")
     androidTestImplementation("com.squareup.okhttp3:mockwebserver:4.12.0")
     androidTestImplementation("app.cash.turbine:turbine:1.0.0")
