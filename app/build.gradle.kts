@@ -38,12 +38,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlin {
-        jvmToolchain(11)
+        jvmToolchain(17)
     }
 
     buildFeatures {
@@ -63,6 +63,9 @@ android {
             jniLibs {
                 useLegacyPackaging = true
             }
+        }
+        unitTests {
+            isIncludeAndroidResources = true
         }
     }
 }
@@ -101,6 +104,10 @@ dependencies {
     testImplementation("io.mockk:mockk:1.13.3")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
     testImplementation("app.cash.turbine:turbine:1.0.0")
+
+    testImplementation("org.robolectric:robolectric:4.11.1")
+    testImplementation("androidx.compose.ui:ui-test-junit4")
+    testImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     androidTestImplementation(project(":appTestShared"))
     androidTestImplementation("androidx.test.ext:junit-ktx:1.1.5")

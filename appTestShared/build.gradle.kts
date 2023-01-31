@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.devexperto.testingexpert.appTestShared"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 23
@@ -36,7 +36,11 @@ android {
 
 dependencies {
     implementation(project(":app"))
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
     implementation("junit:junit:4.13.2")
+    implementation(platform("androidx.compose:compose-bom:2023.10.01"))
+    implementation("androidx.compose.ui:ui-graphics")
+    implementation("androidx.compose.ui:ui-test-junit4")
+    implementation("androidx.test.ext:junit-ktx:1.1.5")
 }
