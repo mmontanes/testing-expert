@@ -120,6 +120,67 @@ class TicTacToeTest {
     }
 
     @Test
+    fun `game ends when 0 fills a row`() {
+        val game = TicTacToe()
+            .move(0, 0)
+            .move(2, 0)
+            .move(0, 1)
+            .move(2, 1)
+            .move(1, 0)
+            .move(2, 2)
+            .move(1, 1)
+        println(game.board[0])
+        println(game.board[1])
+        println(game.board[2])
+        assertEquals(game.findWinner(), O)
+    }
+
+    @Test
+    fun `game ends when O fills a column`() {
+        val game = TicTacToe()
+            .move(0, 0)
+            .move(0, 1)
+            .move(1, 0)
+            .move(1, 1)
+            .move(2, 2)
+            .move(2, 1)
+        println(game.board[0])
+        println(game.board[1])
+        println(game.board[2])
+        assertEquals(game.findWinner(), O)
+    }
+
+    @Test
+    fun `game ends when O fills the first diagonal`() {
+        val game = TicTacToe()
+            .move(0, 2)
+            .move(0, 0)
+            .move(1, 0)
+            .move(1, 1)
+            .move(2, 0)
+            .move(2, 2)
+        println(game.board[0])
+        println(game.board[1])
+        println(game.board[2])
+        assertEquals(game.findWinner(), O)
+    }
+
+    @Test
+    fun `game ends when O fills the second diagonal`() {
+        val game = TicTacToe()
+            .move(0, 0)
+            .move(0, 2)
+            .move(1, 0)
+            .move(1, 1)
+            .move(2, 2)
+            .move(2, 0)
+        println(game.board[0])
+        println(game.board[1])
+        println(game.board[2])
+        assertEquals(game.findWinner(), O)
+    }
+
+    @Test
     fun `game returns null when asked winner in the middle of the game`() {
         val game = TicTacToe()
             .move(0, 0) // X
