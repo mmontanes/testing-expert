@@ -1,12 +1,5 @@
-package com.devexperto.testingexpert
+package com.devexperto.testingexpert.domain
 
-import com.devexperto.testingexpert.domain.Draw
-import com.devexperto.testingexpert.domain.Empty
-import com.devexperto.testingexpert.domain.O
-import com.devexperto.testingexpert.domain.TicTacToe
-import com.devexperto.testingexpert.domain.X
-import com.devexperto.testingexpert.domain.findWinner
-import com.devexperto.testingexpert.domain.move
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
