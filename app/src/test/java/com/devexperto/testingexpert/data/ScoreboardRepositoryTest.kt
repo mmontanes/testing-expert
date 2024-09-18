@@ -1,63 +1,37 @@
 package com.devexperto.testingexpert.data
 
 
-import com.devexperto.testingexpert.data.datasource.BoardLocalDataSource
+
 import com.devexperto.testingexpert.data.datasource.ScoreLocalDataSource
 import com.devexperto.testingexpert.domain.Score
 import com.devexperto.testingexpert.domain.X
+import io.mockk.coEvery
+import io.mockk.coJustRun
+import io.mockk.coVerify
+import io.mockk.junit4.MockKRule
+import io.mockk.mockk
+import io.mockk.slot
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
-import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.mockito.Mock
-import org.mockito.junit.MockitoJUnitRunner
-import org.mockito.kotlin.doReturn
-import org.mockito.kotlin.mock
-import org.mockito.kotlin.verify
-import org.mockito.kotlin.verifyBlocking
-import org.mockito.kotlin.whenever
+import org.mockito.kotlin.capture
 import java.util.Date
 
-@RunWith(MockitoJUnitRunner::class)
+
 class ScoreboardRepositoryTest  {
-    // Test con anotaciones de Mockito
-//    @Mock
-//    lateinit var localDataSource: ScoreLocalDataSource
-//    private lateinit var repository: ScoreboardRepository
-//    private val expectedScores = listOf(Score(X, 3, Date()))
-//
-//    @Before
-//    fun setUp() {
-//        whenever(localDataSource.scores).thenReturn(flowOf(expectedScores))
-//        repository = ScoreboardRepository(localDataSource)
-//    }
-//
-//    @Test
-//    fun `when a score is added, it is added to the local data source`() {
-//        val score = Score(X, 3, Date())
-//
-//        runBlocking {
-//            repository.addScore(score)
-//        }
-//
-//        verifyBlocking(localDataSource) { addScore(score) }
-//    }
-//
-//    @Test
-//    fun `when scores are requested, they are retrieved from the local data source`() {
-//        val score = runBlocking { repository.scores.first() }
-//
-//        Assert.assertEquals(expectedScores, score)
-//    }
-    // Test usando Mockito DSL
+
+    @get:Rule
+    val mockkRule = MockKRule(this)
+
     @Test
     fun `when a score is added, it is added to the local data source`() {
         val expectedScores = listOf(Score(X, 3, Date()))
-        val localDataSource = mock<ScoreLocalDataSource>() {
-            onBlocking { scores } doReturn flowOf(expectedScores)
+        val localDataSource: ScoreLocalDataSource = mockk()  {
+            coEvery { scores } returns flowOf(expectedScores)
+            coJustRun { addScore(any()) }
         }
         val repository = ScoreboardRepository(localDataSource)
         val score = Score(X, 3, Date())
@@ -66,16 +40,14 @@ class ScoreboardRepositoryTest  {
             repository.addScore(score)
         }
 
-        verifyBlocking(localDataSource) {
-            addScore(score)
-        }
+        coVerify { localDataSource.addScore(score) }
     }
 
     @Test
     fun `when scores are requested, they are retrieved from the local data source`() {
         val expectedScores = listOf(Score(X, 3, Date()))
-        val localDataSource = mock<ScoreLocalDataSource>() {
-            onBlocking { scores } doReturn flowOf(expectedScores)
+        val localDataSource: ScoreLocalDataSource = mockk() {
+            coEvery { scores } returns flowOf(expectedScores)
         }
         val repository = ScoreboardRepository(localDataSource)
 
