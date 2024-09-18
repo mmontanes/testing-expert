@@ -10,14 +10,12 @@ import io.mockk.coJustRun
 import io.mockk.coVerify
 import io.mockk.junit4.MockKRule
 import io.mockk.mockk
-import io.mockk.slot
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.kotlin.capture
 import java.util.Date
 
 

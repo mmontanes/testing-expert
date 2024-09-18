@@ -6,17 +6,12 @@ import io.mockk.coEvery
 import io.mockk.junit4.MockKRule
 import io.mockk.mockk
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
-import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
-import org.mockito.kotlin.whenever
-import org.mockito.kotlin.wheneverBlocking
 import java.util.Date
 
 @RunWith(MockitoJUnitRunner::class)
