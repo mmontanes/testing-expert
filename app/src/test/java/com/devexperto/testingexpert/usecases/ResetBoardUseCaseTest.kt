@@ -1,22 +1,29 @@
 package com.devexperto.testingexpert.usecases
 
 import com.devexperto.testingexpert.data.BoardRepository
+import io.mockk.coJustRun
+import io.mockk.coVerify
+import io.mockk.junit4.MockKRule
+import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
+import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.mockito.junit.MockitoJUnitRunner
-import org.mockito.kotlin.mock
-import org.mockito.kotlin.verifyBlocking
 
-@RunWith(MockitoJUnitRunner::class)
+
 class ResetBoardUseCaseTest {
+
+    @get:Rule
+    val mockKRule = MockKRule(this)
+
     @Test
     fun `when invoke is called, then call repository reset`() {
-        val repository: BoardRepository = mock()
+        val repository: BoardRepository = mockk{
+            coJustRun { reset() }
+        }
         val useCAse = ResetBoardUseCase(repository)
 
         runBlocking { useCAse() }
 
-        verifyBlocking(repository) { reset() }
+        coVerify { repository.reset() }
     }
 }
