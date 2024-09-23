@@ -10,11 +10,9 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.mockito.junit.MockitoJUnitRunner
 import java.util.Date
 
-@RunWith(MockitoJUnitRunner::class)
+
 class GamesRepositoryTest {
 
     @get:Rule
