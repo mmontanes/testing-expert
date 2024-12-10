@@ -1,14 +1,12 @@
 package com.devexperto.testingexpert.usecases
 
 import com.devexperto.testingexpert.data.ScoreboardRepository
-import com.devexperto.testingexpert.domain.Score
+import com.devexperto.testingexpert.data.datasource.ScoreLocalDataSourceFake
 import com.devexperto.testingexpert.domain.TicTacToe
 import com.devexperto.testingexpert.domain.X
 import com.devexperto.testingexpert.domain.move
-import io.mockk.coJustRun
 import io.mockk.junit4.MockKRule
-import io.mockk.mockk
-import io.mockk.slot
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.junit.Rule
@@ -16,10 +14,6 @@ import org.junit.Test
 
 
 class AddScoreUseCaseTest{
-
-    @get:Rule
-    val mockkRule = MockKRule(this)
-
     @Test
     fun `when invoke is called, then call repository addScore`() {
         val boardWithWinnerX = TicTacToe()
@@ -28,15 +22,17 @@ class AddScoreUseCaseTest{
             .move(1, 0)
             .move(1, 1)
             .move(2, 0)
-        val slot = slot<Score>()
-        val repository : ScoreboardRepository = mockk(){
-            coJustRun { addScore(capture(slot)) }
-        }
+
+        val scoreLocalDataSource = ScoreLocalDataSourceFake()
+        val repository  = ScoreboardRepository(scoreLocalDataSource)
         val useCase = AddScoreUseCase(repository)
 
-        runBlocking { useCase(boardWithWinnerX) }
+        val scores = runBlocking {
+            useCase(boardWithWinnerX)
+            repository.scores.first()
+        }
 
-        slot.captured.apply {
+        scores.first().apply {
             Assert.assertEquals(X, winner)
             Assert.assertEquals(5, numberOfMoves)
         }
